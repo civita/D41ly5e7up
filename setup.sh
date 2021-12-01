@@ -1,5 +1,8 @@
 #!/bin/bash
 
+COLOR = '\033[0;33m'
+NC = '\033[0m'
+
 function troll_face {
 	echo "
 	⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠟⠛⠛⠛⠋⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠙⠛⠛⠛⠿⠻⠿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
@@ -39,9 +42,8 @@ function bye {
 
 function yes_or_no {
 	while true; do
-		echo $'\033[0;31m'
-		read -p "$* [y/n]: " yn
-		echo $'\033[0m'
+		printf "${COLOR}$* [y/n]${NC}"
+		read -p " " yn
 		case $yn in
 			[Yy]*) return 0  ;;  
 			[Nn]*) return 1 ;;
@@ -73,7 +75,7 @@ function check_and_install {
 function setup_zsh {
 	check_and_install curl "https://curl.se/"
 	check_and_install zsh "Z shell"
-	yes_or_no "Install Oh My Zsh (https://ohmyz.sh/)?" && sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+	yes_or_no "Install Oh My Zsh (https://ohmyz.sh/)?" && sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh); exit"
 	check_and_install autojump "https://github.com/wting/autojump"
 	yes_or_no "Install zsh-syntax-highlighting (https://github.com/zsh-users/zsh-syntax-highlighting)?" && /bin/zsh -c 'source ~/.zshrc && git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_CUSTOM/plugins/zsh-syntax-highlighting'
 	yes_or_no "Install zsh-autosuggestions (https://github.com/zsh-users/zsh-autosuggestions)?" && /bin/zsh -c 'source ~/.zshrc && git clone https://github.com/zsh-users/zsh-autosuggestions.git $ZSH_CUSTOM/plugins/zsh-autosuggestions'
