@@ -39,7 +39,9 @@ function bye {
 
 function yes_or_no {
 	while true; do
+		echo $'\033[0;31m'
 		read -p "$* [y/n]: " yn
+		echo $'\033[0m'
 		case $yn in
 			[Yy]*) return 0  ;;  
 			[Nn]*) return 1 ;;
