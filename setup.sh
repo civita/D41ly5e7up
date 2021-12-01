@@ -83,13 +83,6 @@ function setup_zsh {
 	yes_or_no "Install zsh-syntax-highlighting (https://github.com/zsh-users/zsh-syntax-highlighting)?" && /bin/zsh -c 'source ~/.zshrc && git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_CUSTOM/plugins/zsh-syntax-highlighting'
 	yes_or_no "Install zsh-autosuggestions (https://github.com/zsh-users/zsh-autosuggestions)?" && /bin/zsh -c 'source ~/.zshrc && git clone https://github.com/zsh-users/zsh-autosuggestions.git $ZSH_CUSTOM/plugins/zsh-autosuggestions'
 	yes_or_no "Replace .zshrc ?" && cp rc/zshrc ~/.zshrc
-	if [ -n "$(uname -a | grep Ubuntu)" ]; then
-		if ! command -v sudo &> /dev/null; then
-			update-locale
-		else
-			sudo update-locale
-		fi
-	fi
 }
 
 function setup_screen {
