@@ -49,7 +49,11 @@ function yes_or_no {
 
 function install {
 	if [ -n "$(uname -a | grep Ubuntu)" ]; then
-		sudo apt install $1
+		if ! command -v sudo &> /dev/null; then
+			apt install $1
+		else
+			sudo apt install $1
+		fi
 	elif [ -n "$(uname -a | grep Darwin)" ]; then
 		brew install $1
 	else
@@ -79,13 +83,19 @@ function setup_screen {
 }
 
 function setup_vim {
+	check_and_install vim "https://www.vim.org/"
 	yes_or_no "Setup vim folders?" && mkdir -p ~/.vim/colors && mkdir -p ~/.vim/undo
 	yes_or_no "Download vim color theme?" && curl -L "https://raw.github.com/altercation/vim-colors-solarized/master/colors/solarized.vim" -o ~/.vim/colors/solarized.vim
 	yes_or_no "Replace .vimrc ?" && cp rc/vimrc ~/.vimrc
 }
 
 if [ -n "$(uname -a | grep Ubuntu)" ]; then
-	sudo apt update
+	# apt
+	if ! command -v sudo &> /dev/null; then
+		apt update
+	else
+		sudo apt update
+	fi
 elif [ -n "$(uname -a | grep Darwin)" ]; then
 	# brew
 	if ! command -v brew &> /dev/null; then
