@@ -1,7 +1,7 @@
 #!/bin/bash
 
 GREEN='\033[1;32m'
-ORANGE='\033[0;33m'
+YELLOW='\033[1;33m'
 NC='\033[0m'
 
 function troll_face {
@@ -33,17 +33,18 @@ function troll_face {
 function bye {
 	h=`date +%H`
 	if [ $h -lt 12 ]; then
-		echo Have a nice morning!
+		t='morning'
 	elif [ $h -lt 18 ]; then
-		echo Have a nice afternoon!
+		t='afternoon'
 	else
-		echo Have a nice evening!
+		t='evening'
 	fi
+	printf "\n${GREEN}You're all set. Have a nice ${t}!${NC}\n"
 }
 
 function yes_or_no {
 	while true; do
-		printf "${ORANGE}$* [y/n]${NC}"
+		printf "${YELLOW}$* [y/n]${NC}"
 		read -p " " yn
 		case $yn in
 			[Yy]*) return 0  ;;  
@@ -75,8 +76,9 @@ function check_and_install {
 
 function setup_zsh {
 	check_and_install curl "https://curl.se/"
+	check_and_install git "https://git-scm.com/"
 	check_and_install zsh "Z shell"
-	yes_or_no "Install Oh My Zsh (https://ohmyz.sh/)? ${NC}${GREEN}Please type \"exit\" and press enter after installation${NC}${ORANGE}" && sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+	yes_or_no "Install Oh My Zsh (https://ohmyz.sh/)? ${NC}${GREEN}Please type \"exit\" and press enter after installation${NC}${YELLOW}" && sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 	check_and_install autojump "https://github.com/wting/autojump"
 	yes_or_no "Install zsh-syntax-highlighting (https://github.com/zsh-users/zsh-syntax-highlighting)?" && /bin/zsh -c 'source ~/.zshrc && git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_CUSTOM/plugins/zsh-syntax-highlighting'
 	yes_or_no "Install zsh-autosuggestions (https://github.com/zsh-users/zsh-autosuggestions)?" && /bin/zsh -c 'source ~/.zshrc && git clone https://github.com/zsh-users/zsh-autosuggestions.git $ZSH_CUSTOM/plugins/zsh-autosuggestions'
