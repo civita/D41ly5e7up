@@ -1,7 +1,7 @@
 #!/bin/bash
 
-COLOR = '\033[0;33m'
-NC = '\033[0m'
+COLOR='\033[0;33m'
+NC='\033[0m'
 
 function troll_face {
 	echo "
