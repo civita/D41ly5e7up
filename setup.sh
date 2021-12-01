@@ -69,6 +69,7 @@ function check_and_install {
 }
 
 function setup_zsh {
+	check_and_install curl "https://curl.se/"
 	check_and_install zsh "Z shell"
 	yes_or_no "Install Oh My Zsh (https://ohmyz.sh/)?" && sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 	check_and_install autojump "https://github.com/wting/autojump"
