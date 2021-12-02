@@ -1,5 +1,6 @@
 #!/bin/bash
 
+RED='\033[1;31m'
 GREEN='\033[1;32m'
 YELLOW='\033[1;33m'
 NC='\033[0m'
@@ -54,14 +55,14 @@ function yes_or_no {
 }
 
 function install {
-	if [ -n "$(uname -a | grep Ubuntu)" ]; then
+	if [ -n "$(uname -a | grep Darwin)" ]; then
+		brew install $1
+	elif [ -n "$(cat /etc/os-release 2> /dev/null | grep Ubuntu)" ]; then
 		if ! command -v sudo &> /dev/null; then
 			apt install $1
 		else
 			sudo apt install $1
 		fi
-	elif [ -n "$(uname -a | grep Darwin)" ]; then
-		brew install $1
 	else
 		echo "this script only runs on ubuntu / macOS"
 		exit
@@ -99,20 +100,22 @@ function setup_vim {
 
 troll_face
 
-if [ -n "$(uname -a | grep Ubuntu)" ]; then
+if [ -n "$(uname -a | grep Darwin)" ]; then
+	printf "${GREEN}Hi! macOS user,${NC}\n\n"
+	# brew
+	if ! command -v brew &> /dev/null; then
+		yes_or_no "Install Homebrew (https://brew.sh)?" && /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+	fi
+elif [ -n "$(cat /etc/os-release 2> /dev/null | grep Ubuntu)" ]; then
+	printf "${GREEN}Hi! Ubuntu user,${NC}\n\n"
 	# apt
 	if ! command -v sudo &> /dev/null; then
 		apt update
 	else
 		sudo apt update
 	fi
-elif [ -n "$(uname -a | grep Darwin)" ]; then
-	# brew
-	if ! command -v brew &> /dev/null; then
-		yes_or_no "Install Homebrew (https://brew.sh)?" && /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-	fi
 else
-	echo "this script only runs on ubuntu / macOS"
+	printf "${RED}This script only runs on Ubuntu / macOS.${NC}\n\n"
 	exit
 fi
 
