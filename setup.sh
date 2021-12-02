@@ -3,10 +3,11 @@
 RED='\033[1;31m'
 GREEN='\033[1;32m'
 YELLOW='\033[1;33m'
+WHITE='\033[1;37m'
 NC='\033[0m'
 
 function troll_face {
-	echo "
+	printf "${WHITE}
 	⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠟⠛⠛⠛⠋⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠙⠛⠛⠛⠿⠻⠿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
 	⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠋⠀⠀⠀⠀⠀⡀⠠⠤⠒⢂⣉⣉⣉⣑⣒⣒⠒⠒⠒⠒⠒⠒⠒⠀⠀⠐⠒⠚⠻⠿⠿⣿⣿⣿⣿⣿⣿⣿⣿
 	⣿⣿⣿⣿⣿⣿⣿⣿⠏⠀⠀⠀⠀⡠⠔⠉⣀⠔⠒⠉⣀⣀⠀⠀⠀⣀⡀⠈⠉⠑⠒⠒⠒⠒⠒⠈⠉⠉⠉⠁⠂⠀⠈⠙⢿⣿⣿⣿⣿⣿
@@ -28,7 +29,7 @@ function troll_face {
 	⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣦⣄⡀⠁⠉⠒⠂⠤⠤⣀⣀⣉⡉⠉⠉⠉⠉⢀⣀⣀⡠⠤⠒⠈⠀⠀⠀⠀⣸⣿⣿
 	⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣶⣤⣄⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣰⣿⣿⣿
 	⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣶⣶⣶⣶⣤⣤⣤⣤⣀⣀⣤⣤⣤⣶⣾⣿⣿⣿⣿⣿
-	"
+	${NC}\n"
 }
 
 function bye {
@@ -48,7 +49,7 @@ function yes_or_no {
 		printf "${YELLOW}$* [y/n]${NC}"
 		read -p " " yn
 		case $yn in
-			[Yy]*) return 0  ;;  
+			[Yy]*) return 0 ;;  
 			[Nn]*) return 1 ;;
 		esac
 	done
@@ -64,7 +65,7 @@ function install {
 			sudo apt install $1
 		fi
 	else
-		echo "this script only runs on ubuntu / macOS"
+		printf "${RED}This script only runs on Ubuntu / macOS.${NC}\n\n"
 		exit
 	fi
 }
@@ -110,9 +111,9 @@ elif [ -n "$(cat /etc/os-release 2> /dev/null | grep Ubuntu)" ]; then
 	printf "${GREEN}Hi! Ubuntu user,${NC}\n\n"
 	# apt
 	if ! command -v sudo &> /dev/null; then
-		apt update
+		yes_or_no "Update package list?" && apt update
 	else
-		sudo apt update
+		yes_or_no "Update package list?" && sudo apt update
 	fi
 else
 	printf "${RED}This script only runs on Ubuntu / macOS.${NC}\n\n"
