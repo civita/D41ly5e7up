@@ -5,7 +5,7 @@ Yes, you just find yet another shell setup script. **Oh**, this is **my** workin
 ## Distributions supported
 
 - [x] macOS
-- [x] Ubuntu
+- [x] Debian-based distributions (Ubuntu, Raspbian, etc.)
 
 ## Usage
 
