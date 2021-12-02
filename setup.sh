@@ -58,14 +58,14 @@ function yes_or_no {
 function install {
 	if [ -n "$(uname -a | grep Darwin)" ]; then
 		brew install $1
-	elif [ -n "$(cat /etc/os-release 2> /dev/null | grep Ubuntu)" ]; then
+	elif [ -n "$(cat /etc/os-release 2> /dev/null | grep debian)" ]; then
 		if ! command -v sudo &> /dev/null; then
 			apt install $1
 		else
 			sudo apt install $1
 		fi
 	else
-		printf "${RED}This script only runs on Ubuntu / macOS.${NC}\n\n"
+		printf "${RED}This script only runs on Debian / macOS.${NC}\n\n"
 		exit
 	fi
 }
@@ -107,8 +107,8 @@ if [ -n "$(uname -a | grep Darwin)" ]; then
 	if ! command -v brew &> /dev/null; then
 		yes_or_no "Install Homebrew (https://brew.sh)?" && /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 	fi
-elif [ -n "$(cat /etc/os-release 2> /dev/null | grep Ubuntu)" ]; then
-	printf "${GREEN}Hi! Ubuntu user,${NC}\n\n"
+elif [ -n "$(cat /etc/os-release 2> /dev/null | grep debian)" ]; then
+	printf "${GREEN}Hi! Debian user,${NC}\n\n"
 	# apt
 	if ! command -v sudo &> /dev/null; then
 		yes_or_no "Update package list?" && apt update
@@ -116,7 +116,7 @@ elif [ -n "$(cat /etc/os-release 2> /dev/null | grep Ubuntu)" ]; then
 		yes_or_no "Update package list?" && sudo apt update
 	fi
 else
-	printf "${RED}This script only runs on Ubuntu / macOS.${NC}\n\n"
+	printf "${RED}This script only runs on Debian / macOS.${NC}\n\n"
 	exit
 fi
 
