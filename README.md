@@ -14,3 +14,11 @@ wget https://github.com/civita/D41ly5e7up/releases/latest/download/D41ly5e7up.zi
 unzip D41ly5e7up.zip -d D41ly5e7up && cd D41ly5e7up
 ./setup.sh
 ```
+
+## Install fonts for `zsh` theme (optional)
+
+If the symbols in shell prompt cannot show properly, you need to install and apply fonts in your terminal:
+
+1. Download [Powerline Fonts](https://github.com/powerline/fonts/archive/refs/heads/master.zip) from [GitHub](https://github.com/powerline/fonts). 
+2. Extract it and run `install.sh` (or right-click `install.ps1` and select "Run with PowerShell", for Windows users).
+3. Apply one of the installed fonts (e.g., `SourceCodePro`) as termianl default font.
