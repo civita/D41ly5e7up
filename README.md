@@ -17,7 +17,10 @@ unzip D41ly5e7up.zip -d D41ly5e7up && cd D41ly5e7up
 
 ## Install fonts for `zsh` theme (optional)
 
-If the symbols in shell prompt cannot show properly, you need to install and apply fonts in your terminal:
+If the symbols in shell prompt cannot show properly, you need to install and apply fonts in your terminal.
+
+<details>
+<summary><b> Guide on setting up fonts  🔨 </b></summary>
 
 1. Download [Powerline Fonts](https://github.com/powerline/fonts/archive/refs/heads/master.zip) from [GitHub](https://github.com/powerline/fonts). 
 2. Extract it and run `install.sh` (or right-click `install.ps1` and select "Run with PowerShell", for Windows users).
