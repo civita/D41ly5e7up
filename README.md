@@ -25,3 +25,5 @@ If the symbols in shell prompt cannot show properly, you need to install and app
 1. Download [Powerline Fonts](https://github.com/powerline/fonts/archive/refs/heads/master.zip) from [GitHub](https://github.com/powerline/fonts). 
 2. Extract it and run `install.sh` (or right-click `install.ps1` and select "Run with PowerShell", for Windows users).
 3. Apply one of the installed fonts (e.g., `SourceCodePro`) as termianl default font.
+
+</details>
