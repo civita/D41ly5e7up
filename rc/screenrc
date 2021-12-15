@@ -7,6 +7,6 @@ defscrollback 5000
 termcapinfo xterm* ti@:te@
 
 hardstatus alwayslastline
-hardstatus string '%{= kG}[ %{G}%H %{g}][%= %{= kw}%?%-w%?%{r}[ %{W}%t%?(%u)%?%{r} ]%{w}%?%+w%?%?%= %{g}]%{y}[ Exit: %{Y}Ctrl%{y}+%{Y}a d%{y}  Switch: %{Y}Ctrl%{y}+%{Y}a%{y}+%{Y}a%{y} ]%{g}[%{B} %d/%m %{W}%c %{g}]'
+hardstatus string '%{= kG}[ %{G}%H %{g}][%= %{= kw}%?%-w%?%{r}[ %{W}%t%?(%u)%?%{r} ]%{w}%?%+w%?%?%= %{g}]%{y}[ Exit: %{Y}Ctrl%{y}+%{Y}a d%{y}  Switch: %{Y}Ctrl%{y}+%{Y}a%{y}+%{Y}a%{y} ]%{g}[%{B} %m/%d %{W}%c %{g}]'
 
 msgwait 1
